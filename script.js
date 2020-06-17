@@ -13,27 +13,27 @@ del.addEventListener('click', ()=> {
     document.querySelector('body').classList.remove('scroll')
 })
 
-link.forEach(function(b){
-    b.addEventListener('click', (e) => {
-        e.preventDefault()
-        let info = e.currentTarget.querySelector('.product-info')
-        console.log(info);
+// link.forEach(function(b){
+//     b.addEventListener('click', (e) => {
+//         e.preventDefault()
+//         // let info = e.currentTarget.querySelector('.product-info')
+//         // console.log(info);
 
-        e.currentTarget.classList.add('hide')
-    })
-})
+//         // e.currentTarget.classList.add('hide')
+//     })
+// })
 
 let number = 0
 // data-count = ${number}
-product.forEach(function(b){
+link.forEach(function(b){
     
     b.addEventListener('click', (e) => {  
        
         // console.log(e.currentTarget.querySelector('.dark-product'));
-        
+        e.preventDefault()
         if( !(e.currentTarget.querySelector('.dark-product'))) {
             e.currentTarget.insertAdjacentHTML('afterbegin',`
-            <div class="dark-product">
+            <div class="dark-product  data-count = ${number}">
                 <div class="product-img-container dark-container">
                     <img class="product1-img" src="img/product4.png" alt="img">
                     <button class="x dark-x"></button>
@@ -47,29 +47,40 @@ product.forEach(function(b){
                     </div>
                 </div>   
             </div> 
-            `)
-            number++  
+            `) 
         } else { return }
         let dark = e.currentTarget.querySelector('.dark-product')
         let close  = e.currentTarget.querySelector('.dark-x')
-        
+        let link  = e.currentTarget.querySelector('.product-link')
+
+        // link.addEventListener('click', (event) => {
+        //     console.log(event.target);
+            
+        //     event.stopPropagation()
+        //     dark.remove()
+        // })
 
         close.addEventListener('click', (xE) => {
             
            xE.stopPropagation()
-           console.log(dark)
-
+           
            dark.remove()
            
-           document.querySelectorAll('.product-link').forEach(function(c) {
-                c.addEventListener('click', (e) => { 
-                    e.classList.remove('hide')
-                })
-           })   
-        //    classList.remove('hide')
+           console.log(close.closest('.product-link'))
+        //    close.closest('.product-link').classList.remove('hide')
+
+           
+        //    document.querySelectorAll('.product-link').forEach(function(c) {
+        //         c.addEventListener('click', (e) => { 
+        //             e.currentTarget.classList.remove('hide')
+        //         })
+        //    })   
+    
         })  
     })
 })
+
+number++ 
 
 
 
