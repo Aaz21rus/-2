@@ -50,6 +50,8 @@ product.forEach(function(b){
         close.addEventListener('click', () => {
            
            console.log(dark)
+
+           dark.remove()
            
         //    dark.classList.add('1')
         //    let info = e.currentTarget.querySelector('.product-info')
