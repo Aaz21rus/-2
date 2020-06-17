@@ -2,8 +2,6 @@ const menu = document.querySelector('.menu-burger')
 const del = document.querySelector('.x')
 const link = document.querySelectorAll('.product-link')
 const product = document.querySelectorAll('.product')
-let dark
-
 
 menu.addEventListener('click', ()=> {
     document.querySelector('.popup-menu').classList.add('anim')
@@ -26,8 +24,9 @@ link.forEach(function(b){
 })
 
 product.forEach(function(b){
-    b.addEventListener('click', (e) => {
-        // if(e.currentTarget == dark) {
+    let dark
+    b.addEventListener('click', (e) => {   
+        if(!dark) {
             e.currentTarget.insertAdjacentHTML('afterbegin',`
             <div class="dark-product">
                 <div class="product-img-container dark-container">
@@ -44,7 +43,7 @@ product.forEach(function(b){
                 </div>   
             </div> 
             `)
-        // } else { return }
+        } else { return }
 
         let close  = e.currentTarget.querySelector('.dark-x')
         dark = e.currentTarget.querySelector('.dark-product')  
@@ -52,7 +51,7 @@ product.forEach(function(b){
            
            console.log(dark)
            
-           dark.classList.add('1')
+        //    dark.classList.add('1')
         //    let info = e.currentTarget.querySelector('.product-info')
         })
     })
