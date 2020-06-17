@@ -61,7 +61,12 @@ product.forEach(function(b){
 
            dark.remove()
            
-           document.querySelector('.product-link').classList.remove('hide')
+           document.querySelectorAll('.product-link').forEach(function(c) {
+                c.addEventListener('click', (e) => { 
+                    e.classList.remove('hide')
+                })
+           })   
+        //    classList.remove('hide')
         })  
     })
 })
