@@ -53,6 +53,7 @@ product.forEach(function(b){
 
            dark.remove()
            
+           document.querySelector('.product-link').classList.remove('hide')
         //    dark.classList.add('1')
         //    let info = e.currentTarget.querySelector('.product-info')
         })
