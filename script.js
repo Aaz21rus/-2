@@ -5,6 +5,19 @@ const product = document.querySelectorAll('.product')
 const basket = document.querySelector('.basket')
 let countGoods = ''
 
+function noPoint() {
+    link.forEach( (el)=> {
+        el.classList.add('no-pointer')    
+        // el.classList.add('no-pointer')
+    })
+}
+
+function point() {
+    link.forEach( (el)=> {
+        el.classList.remove('no-pointer')
+    })
+}
+
 basket.innerHTML = countGoods
 
 menu.addEventListener('click', ()=> {
@@ -19,8 +32,9 @@ del.addEventListener('click', ()=> {
 
 let number = 0
 link.forEach(function(b){
-    
     b.addEventListener('click', (e) => {  
+        noPoint()
+        e.currentTarget.classList.remove('no-pointer')
         e.preventDefault()
         let data = {
             img: e.currentTarget.querySelector('.product1-img').getAttribute('src'),
@@ -33,23 +47,35 @@ link.forEach(function(b){
             e.currentTarget.insertAdjacentHTML('afterbegin',`
             <div class="dark-product  data-count = ${number}">
                 <div class="product-img-container dark-container">
-                    <img class="product1-img" src= ${data.img} alt="img">
+                    <img class="product1-img dark-product1-img" src= ${data.img} alt="img">
                     <button class="x dark-x"></button>
                 </div>
                 <div class="product-info">
-                    <h2 class="product-name">${data.material}</h2>
-                    <p class="product-material">${data.img}</p>
+                    <h2 class="product-name dark-product-name">${data.name}</h2>
+                    <p class="product-material dark-product-material">${data.material}</p>
                     <div class="buy-product">
-                        <p class="product-price">${data.price}</p>
+                        <p class="product-price dark-product-price">${data.price}</p>
                         <button class="basket dark-basket"></button>
                     </div>
                 </div>   
             </div> 
             `) 
         } else { return }
+
         let dark = e.currentTarget.querySelector('.dark-product')
         let close  = e.currentTarget.querySelector('.dark-x')
         let darkBasket = e.currentTarget.querySelector('.dark-basket')
+
+        function clear() {
+            dark.remove()
+            point()
+        }
+        
+        function deleteDark() {
+            timeDel = window.setTimeout(clear, 5000)
+        }
+
+        deleteDark() 
 
         close.addEventListener('click', (xE) => {           
            xE.stopPropagation()
@@ -58,9 +84,30 @@ link.forEach(function(b){
         }) 
         
         darkBasket.addEventListener('click', (e) => {
+            basket.classList.add('pointer')
             countGoods++
-            console.log(countGoods);
+            // console.log(countGoods);
             basket.innerHTML = countGoods
+            // document.querySelector('.dark-product1-img').setAttribute('src', data.img) 
+            // document.querySelector('.dark-product-name').innerHTML = data.name
+            // document.querySelector('.dark-product-material').innerHTML = data.material
+            // document.querySelector('.dark-product-price').innerHTML = data.price
+            // if(!())
+            document.querySelector('.product-container').insertAdjacentHTML('afterbegin',`
+                <div class="dark-product dark-top">
+                    <div class="product-img-container dark-container dark-top-container">
+                        <img class="product1-img dark-product1-img top-img" src=${data.img} alt="img">
+                        <button class="x dark-x top-x"></button>
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-name dark-product-name top-name">${data.name}</h2>
+                        <p class="product-material dark-product-material top-mat">${data.material}</p>
+                        <div class="buy-product">
+                            <p class="product-price dark-product-price top-price">${data.price}</p>
+                        </div>
+                    </div>   
+                </div>
+            `) 
         })
     })
 })
