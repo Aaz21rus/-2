@@ -101,7 +101,7 @@ Header
     padding: 60px 0 80px 162px;
 }
 
-@media(max-width: 1210px) {
+@media(max-width: 1310px) {
     .left-container {
         padding-left: 50px;
     }
