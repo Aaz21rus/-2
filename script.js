@@ -24,7 +24,7 @@ link.forEach(function(b){
 })
 
 let number = 0
-
+// data-count = ${number}
 product.forEach(function(b){
     
     b.addEventListener('click', (e) => {  
@@ -33,7 +33,7 @@ product.forEach(function(b){
         
         if( !(e.currentTarget.querySelector('.dark-product'))) {
             e.currentTarget.insertAdjacentHTML('afterbegin',`
-            <div class="dark-product data-count = ${number}">
+            <div class="dark-product">
                 <div class="product-img-container dark-container">
                     <img class="product1-img" src="img/product4.png" alt="img">
                     <button class="x dark-x"></button>
@@ -54,16 +54,15 @@ product.forEach(function(b){
         let close  = e.currentTarget.querySelector('.dark-x')
         
 
-        close.addEventListener('click', () => {
+        close.addEventListener('click', (xE) => {
             
+           xE.stopPropagation()
            console.log(dark)
 
            dark.remove()
            
-        //    document.querySelector('.product-link').classList.remove('hide')
-          
-        })
-        
+           document.querySelector('.product-link').classList.remove('hide')
+        })  
     })
 })
 
