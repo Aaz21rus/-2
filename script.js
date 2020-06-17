@@ -27,7 +27,7 @@ link.forEach(function(b){
 
 product.forEach(function(b){
     b.addEventListener('click', (e) => {
-        if(e.currentTarget == dark) {
+        // if(e.currentTarget == dark) {
             e.currentTarget.insertAdjacentHTML('afterbegin',`
             <div class="dark-product">
                 <div class="product-img-container dark-container">
@@ -44,7 +44,7 @@ product.forEach(function(b){
                 </div>   
             </div> 
             `)
-        } else { return }
+        // } else { return }
 
         let close  = e.currentTarget.querySelector('.dark-x')
         dark = e.currentTarget.querySelector('.dark-product')  
